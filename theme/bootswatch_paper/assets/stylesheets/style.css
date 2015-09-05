@@ -1,0 +1,8 @@
+.btn {
+  text-transform: none !important;
+}
+
+h1 > a {
+  text-decoration: none !important;
+  color: inherit !important;
+}

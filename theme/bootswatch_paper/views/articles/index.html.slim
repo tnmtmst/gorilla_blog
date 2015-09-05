@@ -1,0 +1,22 @@
+.row
+  .col-md-8
+    .list-group
+      - @articles.each do |article|
+        .list-group-item
+          h4 = link_to article.title, article
+          div
+            - article.tag_list.each do |tag|
+              = link_to tag, root_path, class: 'label label-primary'
+          - if current_user == article.user
+            .text-right
+              = link_to edit_article_path(article) do
+                i.fa.fa-pencil
+                '  Edit
+              '  | 
+              = link_to article, data: {:confirm => 'Are you sure?'}, :method => :delete
+                i.fa.fa-trash
+                '  Destroy
+      - if @articles.blank?
+        .list-group-item Article not found
+  .col-md-4
+    == render 'side_bar.html.slim'

@@ -1,0 +1,14 @@
+.panel.panel-default
+  .panel-body == render 'search_form'
+
+.panel.panel-default
+  .panel-body
+    h5 
+      i.fa.fa-user
+      '  Profile
+    = User.first.name
+
+.panel.panel-default
+  .panel-body == render 'tag_cloud'
+
+= link_to 'New Article', new_article_path, class: 'btn btn-success btn-block'

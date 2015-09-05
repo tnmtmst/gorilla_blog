@@ -1,0 +1,7 @@
+= search_form_for @q, class: 'form-horizontal' do |f|
+  .form-group
+    = f.label :title_or_tags_name_cont_any, '<i class="fa fa-search"></i>'.html_safe, class: 'col-sm-1 control-label'
+    .col-sm-11
+      = f.search_field :title_or_tags_name_cont_any, class: 'form-control', placeholder: 'Search Article'
+  /.form-group
+  /  = f.submit class: 'btn btn-default'
