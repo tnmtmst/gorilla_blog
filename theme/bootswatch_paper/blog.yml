@@ -1,2 +1,11 @@
 title: 'Gorilla Blog'
 description: 'Provide simple blog engine for you.'
+copyright: 'Gorilla Blog'
+
+# true:  Tag cloud view
+# false: List View
+tag_cloud: true
+
+side_bar:
+  - profile
+  - tags

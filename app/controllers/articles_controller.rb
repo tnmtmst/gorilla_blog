@@ -6,8 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @q = Article.ransack(search_params)
-    @articles = @q.result(distinct: true).page(params[:page])
-    @tags = Article.tag_counts_on(:tags).order(taggings_count: 'DESC')
+    @articles = @q.result(distinct: true).order(posted_at: 'DESC').page(params[:page])
   end
 
   # GET /articles/1
@@ -77,7 +76,7 @@ class ArticlesController < ApplicationController
     end
 
     def search_params
-      params.require(:q).permit(:title_or_tags_name_cont_any, :tags_name_eq)
+      param = params.require(:q).permit(:title_or_tags_name_cont_any, :tags_name_eq)
     rescue
       nil
     end

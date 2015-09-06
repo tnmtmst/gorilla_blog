@@ -16,15 +16,14 @@ html
         .container-fluid
           .navbar-header
             button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
-              span class="sr-only" Toggle navigation
-              span class="icon-bar"
-              span class="icon-bar"
-              span class="icon-bar"
+              i.fa.fa-bars
             = link_to Blog.title, root_path, class: 'navbar-brand'
 
           .collapse.navbar-collapse#navbar-collapse
             ul.nav.navbar-nav
-              li = link_to 'New Article', new_article_path 
+              li = link_to new_article_path do
+                i.fa.fa-plus
+                '  New Article
               
             ul class="nav navbar-nav navbar-right"
               li.dropdown
@@ -36,14 +35,25 @@ html
                   li.divider
                   li = link_to 'Log out', logout_path
       
-    header.text-center
-      h1 = link_to Blog.title, root_path
-      p = Blog.description
+    header.container
+      .text-center
+        h1 = link_to Blog.title, root_path
+        p = Blog.description
 
     main.container
+      / Message
       - if notice
-        .alert.alert-dismissible.alert-success = notice
+        .alert.alert-dismissible.alert-success
+          i.fa.fa-info-circle
+          = " #{notice}"
       - if alert
-        .alert.alert-dismissible.alert-warning = alert
-      
-      == yield
+        .alert.alert-dismissible.alert-warning
+          i.fa.fa-warning
+          = " #{alert}"
+
+      .row
+        - if controller.action_name == 'new'
+          .col-sm-12 == yield
+        - else
+          .col-md-8 == yield
+          .col-md-4 == render 'side_bar'

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :require_login
-  before_action :set_views_path
+  before_action :set_views_path, :set_tags
   layout :set_layout
 
   # Error handling
@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
 
   def set_layout
     "#{::Rails.root}/theme/#{Settings.theme_name}/views/layouts/application"
+  end
+
+  def set_tags
+    @tags = Article.tag_counts_on(:tags).order(taggings_count: 'DESC')
   end
 
   def not_authenticated

@@ -1,0 +1,17 @@
+.panel.panel-default
+  .panel-body
+    fieldset
+      legend Login
+      = form_tag user_sessions_path, :method => :post, class: 'form-horizontal' do
+        .form-group
+          = label_tag :email, 'Email', class: 'col-md-2 control-label'
+          .col-md-10
+            = text_field_tag :email, '', class: 'form-control'
+        .form-group
+          = label_tag :password, 'Password', class: 'col-md-2 control-label'
+          .col-md-10
+            = password_field_tag :password, '', class: 'form-control'
+        .form-group
+          .col-md-12.text-right
+            = link_to 'Back', root_path, class: 'btn btn-default', style: 'margin-right: 15px;'
+            = submit_tag 'Login', class: 'btn btn-primary'

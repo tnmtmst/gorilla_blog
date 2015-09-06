@@ -1,3 +1,11 @@
+body {
+  background: #fcfcfa !important;
+}
+body > header {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
 .btn {
   text-transform: none !important;
 }
@@ -5,4 +13,13 @@
 h1 > a {
   text-decoration: none !important;
   color: inherit !important;
+}
+
+.panel-heading{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 5px 0;
 }
