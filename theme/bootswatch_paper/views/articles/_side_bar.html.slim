@@ -5,3 +5,6 @@
 /== render 'profile'
 
 = link_to 'New Article', new_article_path, class: 'btn btn-success btn-block'
+br
+- if current_user
+  = link_to 'Log out', logout_path, class: 'btn btn-default btn-block'
