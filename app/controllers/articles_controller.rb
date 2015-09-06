@@ -77,6 +77,8 @@ class ArticlesController < ApplicationController
 
     def search_params
       param = params.require(:q).permit(:title_or_tags_name_cont_any, :tags_name_eq)
+      param[:title_or_tags_name_cont_any] = param[:title_or_tags_name_cont_any].split(/ |　/)
+      param
     rescue
       nil
     end
