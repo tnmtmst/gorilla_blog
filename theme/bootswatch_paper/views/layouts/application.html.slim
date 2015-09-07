@@ -52,7 +52,7 @@ html
           = " #{alert}"
 
       .row
-        - if controller.action_name == 'new'
+        - unless ['index', 'show'].include? controller.action_name
           .col-sm-12 == yield
         - else
           .col-md-8 == yield

@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'kaminari'
+gem 'paperclip'
 gem 'ransack'
 gem 'redcarpet'
 gem 'settingslogic'
