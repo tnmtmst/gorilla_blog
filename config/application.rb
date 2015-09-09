@@ -34,10 +34,10 @@ module GorillaBlog
   end
 end
 
-class Settings < Settingslogic
-  source "#{Rails.root}/config/settings.yml"
+class Gorilla < Settingslogic
+  source "#{Rails.root}/config/gorilla.yml"
 end
 
 class Blog < Settingslogic
-  source "#{Rails.root}/theme/#{Settings.theme_name}/blog.yml"
+  source "#{Rails.root}/theme/#{Gorilla.theme_name}/blog.yml"
 end

@@ -25,11 +25,11 @@ class ApplicationController < ActionController::Base
   private
 
   def set_views_path
-    prepend_view_path "#{::Rails.root}/theme/#{Settings.theme_name}/views"
+    prepend_view_path "#{::Rails.root}/theme/#{Gorilla.theme_name}/views"
   end
 
   def set_layout
-    "#{::Rails.root}/theme/#{Settings.theme_name}/views/layouts/application"
+    "#{::Rails.root}/theme/#{Gorilla.theme_name}/views/layouts/application"
   end
 
   def set_tags

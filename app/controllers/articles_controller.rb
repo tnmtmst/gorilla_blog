@@ -6,13 +6,13 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = @q.result(distinct: true).order(posted_at: 'DESC').page(params[:page]).per(Settings.per_page)
+    @articles = @q.result(distinct: true).order(posted_at: 'DESC').page(params[:page]).per(Gorilla.per_page)
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
-    redirect_to :back if !Settings.hide_future_article && @article.future?
+    redirect_to :back if !Gorilla.hide_future_article && @article.future?
   end
 
   # GET /articles/new
@@ -73,7 +73,7 @@ class ArticlesController < ApplicationController
 
     def set_ransack
       article = Article
-      article = article.where('posted_at <= ?', DateTime.now) if Settings.hide_future_article || current_user
+      article = article.where('posted_at <= ?', DateTime.now) if Gorilla.hide_future_article || current_user
       @q = article.ransack(search_params)
     end
 

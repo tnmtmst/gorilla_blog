@@ -10,7 +10,7 @@ class ThemesController < ApplicationController
   private
 
   def send_theme_file(filepath)
-    full_path = "#{::Rails.root}/theme/#{Settings.theme_name}/assets/#{filepath}"
+    full_path = "#{::Rails.root}/theme/#{Gorilla.theme_name}/assets/#{filepath}"
 
     return error404 if filepath.include?('..') || !File.file?(full_path)
     send_file(full_path, type: mime_type(filepath.split('.').last), disposition: :inline, stream: true)
