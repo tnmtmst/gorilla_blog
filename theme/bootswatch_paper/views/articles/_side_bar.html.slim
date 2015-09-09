@@ -1,9 +1,6 @@
 - Blog.side_bar.each do |content|
   == render content
 
-/== render 'tags'
-/== render 'profile'
-
 = link_to 'New Article', new_article_path, class: 'btn btn-success btn-block'
 br
 - if current_user

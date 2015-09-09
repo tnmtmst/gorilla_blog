@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :require_login, only: [:index, :show]
+  before_action :set_ransack, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show]
 
   # GET /articles
   # GET /articles.json
   def index
-    @q = Article.ransack(search_params)
     @articles = @q.result(distinct: true).order(posted_at: 'DESC').page(params[:page])
   end
 
@@ -68,6 +68,10 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+    end
+
+    def set_ransack
+      @q = Article.ransack(search_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

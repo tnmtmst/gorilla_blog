@@ -27,6 +27,7 @@ body {
 main { flex: 1 0 auto; }
 
 footer {
+  margin-top: 64px;
   background: #666;
   color: #FFF;
 }

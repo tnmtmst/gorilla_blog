@@ -7,5 +7,15 @@ copyright: 'Gorilla Blog'
 tag_cloud: true
 
 side_bar:
+  - search_form
   - profile
   - tags
+  - link_list
+
+link_list_items:
+  - name: Twitter
+    url:  https://twitter.com
+    icon: twitter
+  - name: Facebook
+    url:  https://facebook.com
+    icon: facebook

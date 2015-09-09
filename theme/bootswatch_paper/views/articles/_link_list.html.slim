@@ -1,0 +1,6 @@
+.list-group
+  - Blog.link_list_items.each do |list|
+    = link_to list.url, class: 'list-group-item' do
+      i class="fa fa-#{list.icon}"
+      ' &nbsp;
+      = list.name

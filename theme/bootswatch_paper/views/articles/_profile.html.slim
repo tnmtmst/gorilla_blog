@@ -4,5 +4,6 @@
       i.fa.fa-user
       '  Profile
     .panel-body
-      = link_to image_tag(User.first.image.url(:medium)), User.first.image.url(:original), class: 'thumbnail'
+      - if User.first.image_file_name
+        = link_to image_tag(User.first.image.url(:medium)), User.first.image.url(:original), class: 'thumbnail'
       = User.first.name
