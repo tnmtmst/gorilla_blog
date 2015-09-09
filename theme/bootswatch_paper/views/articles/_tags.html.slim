@@ -5,7 +5,7 @@
   .panel-body
     - if Blog.tag_cloud
       - tag_cloud(@tags, %w(1.0 1.6 2.0)) do |tag, size|
-        = link_to "#{tag.name}(#{tag.count})", articles_path(q: {tags_name_eq: tag.name}), style:"font-size:#{size}rem; margin-right:4px;"
+        = link_to "#{tag.name}(#{tag.count})", articles_path(q: {tags_name_eq: tag.name}), style:"font-size:#{size}em; margin-right:4px;"
       - if @tags.blank?
         i.fa.fa-warning
         '  No tags

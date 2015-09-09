@@ -6,12 +6,13 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = @q.result(distinct: true).order(posted_at: 'DESC').page(params[:page])
+    @articles = @q.result(distinct: true).order(posted_at: 'DESC').page(params[:page]).per(Settings.per_page)
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    redirect_to :back if !Settings.hide_future_article && @article.future?
   end
 
   # GET /articles/new
@@ -71,7 +72,9 @@ class ArticlesController < ApplicationController
     end
 
     def set_ransack
-      @q = Article.ransack(search_params)
+      article = Article
+      article = article.where('posted_at <= ?', DateTime.now) if Settings.hide_future_article || current_user
+      @q = article.ransack(search_params)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -81,8 +84,8 @@ class ArticlesController < ApplicationController
 
     def search_params
       param = params.require(:q).permit(:title_or_tags_name_cont_any, :tags_name_eq)
-      param[:title_or_tags_name_cont_any] = param[:title_or_tags_name_cont_any].split(/ |　/)
-      param
+      param[:title_or_tags_name_cont_any] = param[:title_or_tags_name_cont_any].split(/ |　/) unless param[:tags_name_eq]
+      return param
     rescue
       nil
     end
