@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
 
   acts_as_taggable
 
-  def future?
-    self.posted_at > DateTime.now
+  def undisclosed?
+    Gorilla.hide_future_article && self.posted_at > DateTime.now
   end
 end

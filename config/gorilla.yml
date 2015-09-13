@@ -1,3 +1,7 @@
 theme_name: 'bootswatch_paper'
 per_page: 10
 hide_future_article: true
+
+markdown:
+  filter_html: true
+  hard_wrap: true

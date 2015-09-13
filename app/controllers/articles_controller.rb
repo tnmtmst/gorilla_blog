@@ -12,7 +12,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    redirect_to :back if !Gorilla.hide_future_article && @article.future?
+    redirect_to root_path if @article.undisclosed? && !current_user
+    @user = @article.user
   end
 
   # GET /articles/new
@@ -72,8 +73,11 @@ class ArticlesController < ApplicationController
     end
 
     def set_ransack
-      article = Article
-      article = article.where('posted_at <= ?', DateTime.now) if Gorilla.hide_future_article || current_user
+      if Gorilla.hide_future_article && !current_user
+        article = Article.where('posted_at <= ?', DateTime.now)
+      else
+        article = Article.all
+      end
       @q = article.ransack(search_params)
     end
 
