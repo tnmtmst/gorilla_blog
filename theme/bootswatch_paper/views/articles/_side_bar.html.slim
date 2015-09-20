@@ -5,3 +5,5 @@
 br
 - if current_user
   = link_to 'Log out', logout_path, class: 'btn btn-default btn-block'
+- else
+  = link_to 'Log in', login_path, class: 'btn btn-default btn-block'
