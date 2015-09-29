@@ -1,6 +1,6 @@
 .panel.panel-default
   .panel-body
-    small = @article.posted_at.strftime('%Y-%m-%d %H:%M')
+    = @article.posted_at.strftime(Blog.datetime_format)
     h2 = @article.title
     - @article.tag_list.each do |tag|
         = link_to tag, articles_path(q: {tags_name_eq: tag}), class: 'label label-primary'

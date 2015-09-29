@@ -1,10 +1,10 @@
-title: 'Gorilla Blog'
-description: 'Provide simple blog engine for you.'
-copyright: 'Gorilla Blog'
+title: Gorilla Blog
+description: Provide simple blog engine for you.
+copyright: Gorilla Blog
 
 # true:  Tag cloud view
 # false: List View
-tag_cloud: true
+tag_cloud: false
 
 side_bar:
   - search_form
@@ -19,3 +19,5 @@ link_list_items:
   - name: Facebook
     url:  https://facebook.com
     icon: facebook
+
+datetime_format: '%Y.%m.%d %H:%M'
