@@ -1,0 +1,20 @@
+.panel.panel-default
+  h5.panel-heading
+    i.fa.fa-comment
+    '  Latest Comments
+  .panel-body
+    - Comment.first(5).each do |comment|
+      - unless Blog.simple_latest_comments
+        .well
+          h6 = comment.name
+          p  = comment.body.truncate(100)
+          .text-muted.text-right
+            small = comment.created_at.strftime(Blog.datetime_format)
+        
+        = link_to comment.article.title, comment.article
+        hr
+      - else
+        small.text-muted = comment.created_at.strftime(Blog.datetime_format)
+        br
+        = link_to comment.article.title, comment.article
+        hr

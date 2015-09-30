@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
   def show
     redirect_to root_path if @article.undisclosed? && !current_user
     @user = @article.user
+    @comments = @article.comments
   end
 
   # GET /articles/new

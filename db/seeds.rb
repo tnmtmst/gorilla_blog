@@ -14,4 +14,10 @@ end
   )
   article.tag_list =  FFaker::BaconIpsum.words
   article.save
+
+  Article.find( Article.pluck(:id).sample ).comments.create(
+    name: FFaker::Name.name,
+    url:  FFaker::Internet.http_url,
+    body: FFaker::BaconIpsum.paragraph
+  )
 end

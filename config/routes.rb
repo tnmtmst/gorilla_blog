@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :users
-  resources :articles
+  resources :articles, shallow: true do
+    resources :comments
+  end
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :user_sessions, only: [:new, :create, :destroy]
 

@@ -11,6 +11,11 @@
         - article.tag_list.each do |tag|
           - c = tag == selected_tag_name ? 'success' : 'primary'
           = link_to tag, articles_path(q: {tags_name_eq: tag}), class: "label label-#{c}"
+      div.text-right
+        small
+          i.fa.fa-comment
+          '  Comments
+          = " (#{article.comments.size})"
       - if current_user == article.user
         .text-right
           = link_to edit_article_path(article) do

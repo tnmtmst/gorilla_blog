@@ -17,6 +17,34 @@ ul.pager
   li = link_to 'Back', articles_path
   li.next     = link_to '>>', o_article unless o_article.nil?
 
+button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal_comment_form" New Comment
+br
+
+- unless @comments.empty?
+  .panel.panel-default
+    h5.panel-heading
+      i.fa.fa-comment
+      '  Comments
+    .list-group
+      - @comments.each do |comment|
+        .list-group-item
+          h6 = link_to_if comment.url, comment.name, comment.url, target: '_blank'
+          p  = comment.body
+          div.text-right.text-muted
+            small = comment.created_at.strftime(Blog.datetime_format)
+    
+
 = link_to 'Edit', edit_article_path(@article)
 '|
 = link_to 'Back', articles_path
+
+<!-- Modal -->
+.modal.fade#modal_comment_form tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal"
+          i.fa.fa-close
+        h4.modal-title New Comment
+      .modal-body
+        == render partial: 'comments/form', locals: {comment: @article.comments.build}

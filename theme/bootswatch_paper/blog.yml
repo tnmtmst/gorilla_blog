@@ -5,10 +5,12 @@ copyright: Gorilla Blog
 # true:  Tag cloud view
 # false: List View
 tag_cloud: false
+simple_latest_comments: true
 
 side_bar:
   - search_form
   - profile
+  - latest_comments
   - tags
   - link_list
 
