@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = @q.result(distinct: true).order(posted_at: 'DESC').page(params[:page]).per(Gorilla.per_page)
+    @articles = @q.result(distinct: true).page(params[:page]).per(Gorilla.per_page)
   end
 
   # GET /articles/1

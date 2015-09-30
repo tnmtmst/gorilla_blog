@@ -10,7 +10,12 @@
     
     
     
-    
+
+ul.pager
+  - n_article, o_article = @article.newer, @article.older
+  li.previous = link_to '<<', n_article unless n_article.nil?
+  li = link_to 'Back', articles_path
+  li.next     = link_to '>>', o_article unless o_article.nil?
 
 = link_to 'Edit', edit_article_path(@article)
 '|
