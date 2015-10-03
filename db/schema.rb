@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930142430) do
+ActiveRecord::Schema.define(version: 20151003152447) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20150930142430) do
   add_index "articles", ["title"], name: "index_articles_on_title"
   add_index "articles", ["user_id"], name: "index_articles_on_user_id"
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "article_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  add_index "attachments", ["article_id"], name: "index_attachments_on_article_id"
+
   create_table "comments", force: :cascade do |t|
     t.integer  "article_id"
     t.string   "name"
@@ -35,6 +47,18 @@ ActiveRecord::Schema.define(version: 20150930142430) do
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "article_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "pictures", ["article_id"], name: "index_pictures_on_article_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
