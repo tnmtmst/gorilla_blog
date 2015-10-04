@@ -4,7 +4,7 @@ copyright: Gorilla Blog
 
 # true:  Tag cloud view
 # false: List View
-tag_cloud: false
+tag_cloud: true
 simple_latest_comments: true
 
 side_bar:

@@ -7,15 +7,34 @@
           li = message
 
   .form-group
-    = f.label :title
+    = f.label :title, class: 'text-success' do
+      i.fa.fa-pencil
+      '  Title
     = f.text_field :title, class: 'form-control'
   .form-group
-    = f.label :tag_list, 'Tags'
+    
+    = f.label :tag_list, class: 'text-success' do
+      i.fa.fa-tags
+      '  Tags(Comma-separated)
     = text_field_tag 'article[tag_list]', @article.tag_list.join(','), class: 'form-control'
   .form-group
-    = f.label :body
-    = f.text_area :body, class: 'form-control'
+    = f.label :body, class: 'text-success' do
+      i.fa.fa-file-text-o
+      '  Body
+    = f.text_area :body, rows: 10, class: 'form-control article-text-area'
+  
+  = f.fields_for :pictures do |picture|
+    = render 'picture_fields', f: picture
+
   .form-group
-    = f.label :posted_at
-    = f.datetime_select :posted_at, class: 'form-control'
-  .form-group = f.submit class: 'btn btn-default'
+    = link_to_add_association f, :pictures, class:'btn btn-default' do
+      i.fa.fa-camera
+      '  Add picture
+
+  .form-group.select-datetime
+    = f.label :posted_at, class: 'text-success' do
+      i.fa.fa-calendar
+      '  Posted at 
+    = f.datetime_select :posted_at, use_month_numbers: true, class: '', style: 'display: inline-block; width: auto;'
+
+  .form-group = f.submit class: 'btn btn-primary btn-block'

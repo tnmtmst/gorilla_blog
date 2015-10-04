@@ -1,4 +1,4 @@
-body { background: #fcfcfa !important; }
+body { background: #FDFDFD !important; }
 body > header {
   margin-top: 30px;
   margin-bottom: 15px;
@@ -30,4 +30,10 @@ footer {
   margin-top: 64px;
   background: #666;
   color: #FFF;
+}
+
+.select-datetime select {
+  display: inline-block !important;
+  width: auto !important;
+  padding: 6px 16px !important;
 }

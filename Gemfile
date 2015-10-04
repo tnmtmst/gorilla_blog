@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'cocoon'
 gem 'kaminari'
 gem 'paperclip'
 gem 'ransack'

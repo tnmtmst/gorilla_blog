@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   layout :set_layout
 
   # Error handling
-  if Rails.env.production?
+  unless Rails.env.develop?
     rescue_from Exception,                      with: :error500
     rescue_from ActiveRecord::RecordNotFound,   with: :error404
     rescue_from ActionController::RoutingError, with: :error404
@@ -38,5 +38,44 @@ class ApplicationController < ActionController::Base
 
   def not_authenticated
     redirect_to login_path, alert: "Please login first"
+  end
+
+  def mime_type(extention)
+    case extention
+
+    ### Stylesheets and JavaScripts ###
+    when 'css'
+      'text/css'
+    when 'js'
+      'text/javascript'
+
+    ### Images ###
+    when 'jpg', 'jpeg'
+      'image/jpeg'
+    when 'png'
+      'image/png'
+    when 'gif'
+      'image/gif'
+    when 'svg', 'svgz'
+      'image/svg+xml'
+
+    ### Fonts ###
+    when 'woff'
+      'application/font-woff'
+    when 'woff2'
+      'application/font-woff2'
+    when 'ttf'
+      'application/x-font-ttf'
+    when 'otf'
+      'application/x-font-otf'
+    when 'svgf'
+      'image/svg+xml'
+    when 'eot'
+      'application/vnd.ms-fontobject'
+
+    ### Others ###
+    else
+      'application/binary'
+    end
   end
 end

@@ -1,0 +1,7 @@
+.nested-fields.form-group
+  .input-group
+      span.input-group-addon
+        = link_to_remove_association f, class: '' do
+          i.fa.fa-close
+      = f.file_field :image, class: 'picture-file-field form-control'
+  = image_tag f.object.image.url

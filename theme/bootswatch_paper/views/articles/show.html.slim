@@ -1,3 +1,15 @@
+- if current_user == @article.user
+  .btn-group.btn-group-justified
+    = link_to edit_article_path(@article), class: 'btn btn-default' do
+      i.fa.fa-pencil
+      '  Edit
+    = link_to @article, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' do
+      i.fa.fa-trash
+      '  Destroy
+  br
+    
+  
+
 .panel.panel-default
   .panel-body
     = @article.posted_at.strftime(Blog.datetime_format)
@@ -7,9 +19,6 @@
     hr
     
     = markdown @article.body
-    
-    
-    
 
 ul.pager
   - n_article, o_article = @article.newer, @article.older
@@ -33,12 +42,7 @@ br
           div.text-right.text-muted
             small = comment.created_at.strftime(Blog.datetime_format)
     
-
-= link_to 'Edit', edit_article_path(@article)
-'|
-= link_to 'Back', articles_path
-
-<!-- Modal -->
+// Modal
 .modal.fade#modal_comment_form tabindex="-1"
   .modal-dialog
     .modal-content

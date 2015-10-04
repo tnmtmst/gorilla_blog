@@ -22,7 +22,7 @@
             i.fa.fa-pencil
             '  Edit
           '  | 
-          = link_to article, data: {:confirm => 'Are you sure?'}, :method => :delete
+          = link_to article, data: {:confirm => 'Are you sure?'}, :method => :delete do
             i.fa.fa-trash
             '  Destroy
 .text-center

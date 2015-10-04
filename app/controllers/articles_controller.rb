@@ -67,6 +67,18 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def picture
+    full_path = "#{Rails.root}/public/picture/#{params[:id]}/#{params[:filename]}"
+
+    #return error404 if full_path.include?('..') || !File.file?(full_path)
+    send_file(full_path, type: mime_type(params[:filename].split('.').last), disposition: :inline, stream: true)
+  end
+
+  def remove_picture
+    picture = Picture.find(params[:id])
+    picture.destroy
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -84,7 +96,8 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body, :body, :posted_at, :tag_list)
+      params.require(:article).permit(:title, :body, :body, :posted_at, :tag_list,
+        pictures_attributes: [:id, :image, :article_id, :_destroy])
     end
 
     def search_params
