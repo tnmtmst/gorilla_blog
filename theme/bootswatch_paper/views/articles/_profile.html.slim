@@ -1,13 +1,21 @@
-- if User.first
+- if @article
+  - user = @article.user
+- elsif User.count == 1
+  - user = User.first
+- else
+  - user = nil
+
+- if user
   .panel.panel-default
     h5.panel-heading
       i.fa.fa-user
       '  Profile
-      
-      - if current_user
-        = link_to edit_user_path(current_user), class: 'pull-right', title: 'Edit Profile' do
+      - if current_user == user
+        = link_to edit_user_path(user), class: 'pull-right', title: 'Edit Profile' do
           i.fa.fa-cog
+
     .panel-body
-      - if User.first.image_file_name
-        = link_to image_tag(User.first.image.url(:medium)), User.first.image.url(:original), class: 'thumbnail'
-      = User.first.name
+      - if user.image?
+        = link_to image_tag(user.image.url(:medium)), user.image.url(:original), class: 'thumbnail'
+      ' Name: 
+      = user.name
