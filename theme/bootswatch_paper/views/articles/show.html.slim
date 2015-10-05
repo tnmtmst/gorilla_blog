@@ -18,7 +18,16 @@
         = link_to tag, articles_path(q: {tags_name_eq: tag}), class: 'label label-primary'
     hr
     
-    = markdown @article.body
+    .article-body = markdown @article.body
+
+- if current_user == @article.user
+  .btn-group.btn-group-justified
+    = link_to edit_article_path(@article), class: 'btn btn-default' do
+      i.fa.fa-pencil
+      '  Edit
+    = link_to @article, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger' do
+      i.fa.fa-trash
+      '  Destroy
 
 ul.pager
   - n_article, o_article = @article.newer, @article.older

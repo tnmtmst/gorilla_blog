@@ -2,7 +2,7 @@ class Picture < ActiveRecord::Base
   belongs_to :article
 
   has_attached_file :image,
-                    styles: {:thumb => "300x300>"},
+                    styles: {default: '720x720>'},
                     path:   "#{Rails.root}/public/pictures/:filename",
                     url:    "#{ActionController::Base.relative_url_root}/pictures/:filename"
 
